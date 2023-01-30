@@ -10,9 +10,15 @@ interface CardProps {
 }
 
 export default function Card({keyId, text, extras}: CardProps) {
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selected, setSelected] = useState(
+    new Array(extras?.subselections.length).fill(false),
+  );
 
-  const handleOptionChange = (option: string) => setSelectedOption(option);
+  const handleOptionChange = (index: number) => {
+    let newSelected = [...selected];
+    newSelected.forEach((_, i) => (newSelected[i] = i === index));
+    setSelected(newSelected);
+  };
 
   return (
     <View
@@ -23,13 +29,14 @@ export default function Card({keyId, text, extras}: CardProps) {
       {extras && (
         <>
           <View style={styles.horizontalLine} />
-          {extras.subselections.map(item => (
+          {extras.subselections.map((item, index) => (
             <Pressable key={item._id}>
               <CardOption
                 keyId={item._id}
                 text={item.name}
+                index={index}
                 handleOptionChange={handleOptionChange}
-                selectedOption={selectedOption}
+                selectedIndex={selected[index]}
               />
             </Pressable>
           ))}

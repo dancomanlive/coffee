@@ -4,21 +4,23 @@ import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 interface CardOptionProps {
   keyId: string;
   text: string;
-  selectedOption: string;
-  handleOptionChange: (option: string) => void;
+  index: number;
+  selectedIndex: boolean;
+  handleOptionChange: (option: number) => void;
 }
 
 export default function CardOption({
   keyId,
   text,
-  selectedOption,
+  index,
+  selectedIndex,
   handleOptionChange,
 }: CardOptionProps) {
   return (
-    <Pressable onPress={() => handleOptionChange(text)} key={keyId}>
+    <Pressable onPress={() => handleOptionChange(index)} key={keyId}>
       <View key={keyId} style={styles.container}>
         <Text style={styles.text}>{text}</Text>
-        {selectedOption === text ? (
+        {selectedIndex ? (
           <Image source={require('../assets/Check.png')} style={styles.image} />
         ) : (
           <Image
