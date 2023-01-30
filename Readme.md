@@ -1,9 +1,9 @@
-#Prerequisites
+### Prerequisites
 
 Node.js and npm (Node Package Manager) installed on your machine
 A compatible mobile device (iOS or Android) or an emulator
 
-#Installation
+### Installation
 Clone the repository to your local machine
 `git clone https://github.com/<username>/<repo-name>.git`
 
@@ -19,5 +19,5 @@ Run packager
 Run application on ios
 `npx react-native run-ios`
 
-#Device support
+### Device support
 Android not supported.
